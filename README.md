@@ -61,6 +61,34 @@ $ grep . .ebenv-copy/*
 .ebenv-copy/PARAM2:value
 ```
 
+## copy
+
+`copy` copies the environment variables from one environment within an EB app
+to another environment in the same app.  Can optionally be used to remove vars
+from the destination environment, that are not found in the source environment.
+
+```
+$ ebenv copy app-name app-env-name new-app-env-name 
+Source environment 'app-env-name'  has 22 options
+Performing environment update...
+Done, please check your EB web console to see the environment update progress
+```
+
+Right now `copy` will overwrite any values in the destination environment for
+keys found in the source environment.  If you specify the `--remove` option,
+it will remove any keys in the destination environment not found in the source
+environment.
+
+```
+$ ebenv copy app-name app-env-name new-app-env-name
+Source environment 'app-env-name'  has 22 options
+Will remove 2 options from destination environment 'new-app-env-name'
+...
+```
+
+This command is potentially very dangerous and destructive at this point,
+especially if `--remove` is used.  Use with care.
+
 # Setup
 
 ```

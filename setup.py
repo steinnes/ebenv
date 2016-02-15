@@ -5,7 +5,7 @@ from pip.download import PipSession
 
 setup(
     name='ebenv',
-    version='0.1',
+    version='0.2',
     description='AWS Elastic Beanstalk environment dumper/extractor.',
     url='https://github.com/steinnes/ebenv',
     install_requires=[str(req.req) for req in parse_requirements("requirements.txt", session=PipSession())],
