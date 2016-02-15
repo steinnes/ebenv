@@ -29,21 +29,32 @@ $ docker run --rm -it --env-file=envfile app/name
 ## envdir
 
 `envdir` dumps environment variables into an *envdir* as used by tools such as
-djb's [https://cr.yp.to/daemontools/envdir.html](envdir), runit's
-[http://smarden.org/runit/chpst.8.html](chpst), or one of the other clones,
+djb's [envdir](https://cr.yp.to/daemontools/envdir.html), runit's
+[chpst](http://smarden.org/runit/chpst.8.html), or one of the other clones,
 example:
 
 ```
 $ ebenv envdir app-name app-env-name
 found 4 vars, will write to '.env/*' [y/N]: n
 Exiting..
+```
 
+`envdir` will prompt before writing any files or creating the directory, and
+a `--target_dir` option can be specified:
+
+```
 $ ebenv envdir app-name app-env-name --target_dir=.ebenv-copy
 found 4 vars, will write to '.ebenv-copy/*' [y/N]: y
 .ebenv-copy did not exists, creating
-(venv) ses: ~/w/ebenv (master) $ ls .ebenv-copy/
+
+$ ls .ebenv-copy/
 AWS_ACCESS_KEY_ID BUGSNAG_API_KEY   PARAM1            PARAM2
-(venv) ses: ~/w/ebenv (master) $ grep . .ebenv-copy/*
+
+```
+
+A simple `grep` can verify that the env files contain the desired data:
+```
+$ grep . .ebenv-copy/*
 .ebenv-copy/AWS_ACCESS_KEY_ID:abcdefghijklmnopqrstvwuxyz
 .ebenv-copy/BUGSNAG_API_KEY:deadbeefdeadbeefdeadbeef
 .ebenv-copy/PARAM1:value
