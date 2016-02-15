@@ -1,12 +1,13 @@
 # ebenv
-AWS Elastic Beanstalk environment extractor
+AWS Elastic Beanstalk environment extractor/utility
 
-This is a command line utility to dump/extract environment variables from 
+This is a command line utility to manage environment variables from 
 [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/details/) app
 environments, to either re-use the same configuration locally or to import
 into another environment.
 
-Currently two methods of extraction are supported:
+Currently two methods of extraction are supported, and one method to copy/sync
+variables between environments:
 
 ## env
 
