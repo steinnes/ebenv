@@ -7,3 +7,6 @@ setup: venv
 venv:
 	virtualenv venv
 
+clean:
+	rm -rf venv
+	rm -rf *.egg-info

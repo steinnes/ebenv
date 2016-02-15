@@ -60,3 +60,34 @@ $ grep . .ebenv-copy/*
 .ebenv-copy/PARAM1:value
 .ebenv-copy/PARAM2:value
 ```
+
+# Setup
+
+```
+$ make
+virtualenv venv
+New python executable in /Users/ses/w/ebenv/venv/bin/python2.7
+Also creating executable in /Users/ses/w/ebenv/venv/bin/python
+Installing setuptools, pip, wheel...done.
+venv/bin/python setup.py develop
+...
+```
+
+Now `ebenv` is installed and available in the local `venv`, and can be used
+either by activating the virtualenv (`source venv/bin/activate`) or by running
+it directly from the venv: `venv/bin/ebenv`.
+
+
+# Dependencies
+
+`ebenv` depends on `boto3` and relies on boto3 being able to find standard AWS
+credentials either via `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` env vars
+in the local shell, or from `~/.aws/(config|credentials)`.
+
+
+# Future
+
+In the future I'll probably add a command to sync environment variables between
+environments.  There are a few different ways of merging the vars (ie. how do
+you treat variables only found in the target, and not the source) so for now I
+am not venturing there.
