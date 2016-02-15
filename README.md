@@ -115,7 +115,10 @@ in the local shell, or from `~/.aws/(config|credentials)`.
 
 # Future
 
-In the future I'll probably add a command to sync environment variables between
-environments.  There are a few different ways of merging the vars (ie. how do
-you treat variables only found in the target, and not the source) so for now I
-am not venturing there.
+Write more options for `copy`, it might be useful to prompt for every 
+detected change, to allow finer-grained copying of variables.  Maybe a
+`--dryrun` switch to show the intended deltas.
+
+Other useful commands might include a way to set an environment based
+on an `env` file or an `envdir`, basically the opposite of those two
+commands in the utility right now.
