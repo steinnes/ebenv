@@ -1,6 +1,14 @@
+import os
 from setuptools import setup
 from pip.req import parse_requirements
 from pip.download import PipSession
+
+
+def get_requirements():
+    requirements = parse_requirements(
+        os.path.join(os.path.dirname(__file__), "requirements.txt"),
+        session=PipSession())
+    return [str(req.req) for req in requirements]
 
 
 setup(
@@ -11,7 +19,7 @@ setup(
     author='Steinn Eldjarn Sigurdarson',
     author_email='steinnes@gmail.com',
     keywords=['aws', 'elasticbeanstalk', 'environment'],
-    install_requires=[str(req.req) for req in parse_requirements("requirements.txt", session=PipSession())],
+    install_requires=get_requirements(),
     entry_points='''
         [console_scripts]
         ebenv=ebenv:cli
