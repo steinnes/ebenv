@@ -45,11 +45,11 @@ def envdir(app_name, env_name, target_dir, aws_region):
         click.echo("Exiting..")
         sys.exit(1)
 
-    if not os.path.exists(target_dir) and not os.path.isdir(target_dir):
+    if not os.path.exists(target_dir):
         click.echo("{} did not exists, creating".format(target_dir))
         os.mkdir(target_dir)
     else:
-        if os.path.exists(target_dir):
+        if os.path.exists(target_dir) and not os.path.isdir(target_dir):
             click.echo("{} exists but isn't a directory, unable to continue".format(target_dir))
             sys.exit(2)
 
