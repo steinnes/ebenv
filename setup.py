@@ -1,5 +1,6 @@
 import os
 from setuptools import setup
+import fastentrypoints
 from pip.req import parse_requirements
 from pip.download import PipSession
 
@@ -13,7 +14,7 @@ def get_requirements():
 
 setup(
     name='ebenv',
-    version='0.2.7',
+    version='0.2.8',
     description='AWS Elastic Beanstalk environment dumper/extractor.',
     url='https://github.com/steinnes/ebenv',
     author='Steinn Eldjarn Sigurdarson',

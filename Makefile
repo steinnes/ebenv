@@ -8,11 +8,13 @@ venv:
 	virtualenv venv
 
 clean:
-	rm -rf venv
 	rm -rf *.egg-info
+	rm -rf dist/*
 
 release:
-	python setup.py sdist upload -r pypi
+	venv/bin/python setup.py sdist bdist_wheel
+	twine upload dist/*.tar.gz
+	twine upload dist/*.whl
 
 release_test:
 	python setup.py sdist upload -r pypitest
