@@ -1,8 +1,20 @@
 import os
 from setuptools import setup
 import fastentrypoints
-from pip.req import parse_requirements
-from pip.download import PipSession
+
+try:
+    # pip >= 10
+    from pip._internal.req import parse_requirements
+except ImportError:
+    # pip <= 9.0.3
+    from pip.req import parse_requirements
+
+try:
+    # pip >= 10
+    from pip._internal.download import PipSession
+except ImportError:
+    # pip <= 9.0.3
+    from pip.download import PipSession
 
 
 def get_requirements():
