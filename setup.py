@@ -34,7 +34,7 @@ def read(fname):
 
 setup(
     name='ebenv',
-    version='0.3.0',
+    version='0.3.1',
     description='AWS Elastic Beanstalk environment dumper/extractor.',
     long_description=read('README.md'),
     long_description_content_type='text/markdown',
