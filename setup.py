@@ -1,6 +1,9 @@
-import os
-from setuptools import setup
+import codecs
 import fastentrypoints
+import os
+
+from setuptools import setup
+
 
 try:
     # pip >= 10
@@ -24,10 +27,17 @@ def get_requirements():
     return [str(req.req) for req in requirements]
 
 
+def read(fname):
+    file_path = os.path.join(os.path.dirname(__file__), fname)
+    return codecs.open(file_path, encoding='utf-8').read()
+
+
 setup(
     name='ebenv',
     version='0.3.0',
     description='AWS Elastic Beanstalk environment dumper/extractor.',
+    long_description=read('README.md'),
+    long_description_content_type='text/markdown',
     url='https://github.com/steinnes/ebenv',
     author='Steinn Eldjarn Sigurdarson',
     author_email='steinnes@gmail.com',
