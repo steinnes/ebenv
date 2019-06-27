@@ -1,4 +1,7 @@
 # ebenv
+[![CircleCI](https://circleci.com/gh/steinnes/ebenv.svg?style=svg)](https://circleci.com/gh/steinnes/ebenv)
+[![PyPI Downloads](https://img.shields.io/pypi/dm/ebenv.svg)](https://pypi.org/project/ebenv/)
+[![PyPI Version](https://img.shields.io/pypi/v/ebenv.svg)](https://pypi.org/project/ebenv/)
 AWS Elastic Beanstalk environment extractor/utility
 
 This is a command line utility to manage environment variables from 

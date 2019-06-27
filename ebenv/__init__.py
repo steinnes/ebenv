@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 import boto3
 import click
 import os
@@ -21,12 +19,15 @@ def cli():
 
 
 def get_env(app_name, env_name, aws_region):
-    response = get_client(aws_region).describe_configuration_settings(ApplicationName=app_name, EnvironmentName=env_name)
+    response = get_client(aws_region).describe_configuration_settings(
+        ApplicationName=app_name,
+        EnvironmentName=env_name
+    )
     try:
         if response['ResponseMetadata']['HTTPStatusCode'] != 200:
             raise Exception("Invalid status code returned: {}".format(response['ResponseMetadata']['HTTPStatusCode']))
     except KeyError as e:
-        print("Unknown error ({}) in boto.client.describe_configuration_settings".format(e))
+        click.echo("Unknown error ({}) in boto.client.describe_configuration_settings".format(e))
         raise
 
     env = {}
@@ -112,4 +113,3 @@ def copy(app_name, src_env_name, dst_env_name, remove, aws_region):
 
 if __name__ == "__main__":
     cli()
-
