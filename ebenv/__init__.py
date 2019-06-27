@@ -1,7 +1,11 @@
+from __future__ import print_function
+
 import boto3
 import click
 import os
 import sys
+
+from ._compat import iteritems
 
 
 ENV_VAR_NAMESPACE = 'aws:elasticbeanstalk:application:environment'
@@ -22,7 +26,7 @@ def get_env(app_name, env_name, aws_region):
         if response['ResponseMetadata']['HTTPStatusCode'] != 200:
             raise Exception("Invalid status code returned: {}".format(response['ResponseMetadata']['HTTPStatusCode']))
     except KeyError as e:
-        print "Unknown error ({}) in boto.client.describe_configuration_settings".format(e)
+        print("Unknown error ({}) in boto.client.describe_configuration_settings".format(e))
         raise
 
     env = {}
@@ -90,7 +94,7 @@ def copy(app_name, src_env_name, dst_env_name, remove, aws_region):
     options = [dict(
         Namespace=ENV_VAR_NAMESPACE,
         OptionName=key,
-        Value=value) for key, value in src_env.iteritems()]
+        Value=value) for key, value in iteritems(src_env)]
 
     remove_options = [dict(
         Namespace=ENV_VAR_NAMESPACE,
