@@ -1,0 +1,12 @@
+version: 2
+
+jobs:
+  build:
+    environment:
+      TOXENV: py27,py35,py36,py37
+    working_directory: ~/ebenv
+    docker:
+      - image: themattrix/tox
+    steps:
+      - checkout
+      - run: tox
