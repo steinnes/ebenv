@@ -26,7 +26,7 @@ def get_requirements():
 
 setup(
     name='ebenv',
-    version='0.2.8',
+    version='0.3.0',
     description='AWS Elastic Beanstalk environment dumper/extractor.',
     url='https://github.com/steinnes/ebenv',
     author='Steinn Eldjarn Sigurdarson',
