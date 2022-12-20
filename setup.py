@@ -12,19 +12,28 @@ except ImportError:
     # pip <= 9.0.3
     from pip.req import parse_requirements
 
-try:
-    # pip >= 10
-    from pip._internal.download import PipSession
-except ImportError:
-    # pip <= 9.0.3
-    from pip.download import PipSession
+PipSession = None
+download_module_names = [ "pip._internal.network.download", "pip._internal.download", "pip.download" ]
+for module_name in download_module_names:
+    try:
+        PipSession = __import__(f'{module_name}', globals(), locals(), [None], 0).PipSession
+        break
+    except ImportError:
+        pass
+
+if not PipSession:
+    raise ImportError("Could not find PipSession")
 
 
 def get_requirements():
     requirements = parse_requirements(
         os.path.join(os.path.dirname(__file__), "requirements.txt"),
         session=PipSession())
-    return [str(req.req) for req in requirements]
+
+    try:
+        return [str(req.requirement) for req in requirements]
+    except AttributeError:
+        return [str(req.req) for req in requirements]
 
 
 def read(fname):
